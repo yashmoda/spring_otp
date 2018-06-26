@@ -2,8 +2,11 @@ package otp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Transactional
 @Repository
@@ -49,5 +52,12 @@ public class OTPDAO {
         String query = "SELECT otp from otp where phone = ?";
         int db_otp = jdbcTemplate.queryForObject(query, Integer.class, otp.getPhone());
         return db_otp;
+    }
+
+    public List<otp> getAllPhone()
+    {
+        String query = "SELECT phone FROM otp";
+        RowMapper<otp> mapper = new OtpRowMapper();
+        return jdbcTemplate.query(query, mapper);
     }
 }

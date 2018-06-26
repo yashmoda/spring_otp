@@ -4,8 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
 
 @Controller
 public class OTPController {
@@ -35,4 +38,12 @@ public class OTPController {
             return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
         }
     }
+
+    @GetMapping(path = "/all_phone")
+    public ResponseEntity<List<otp>> getAllPhone()
+    {
+        List<otp> otp = otpdao.getAllPhone();
+        return new ResponseEntity<List<otp>>(otp, HttpStatus.OK);
+    }
 }
+

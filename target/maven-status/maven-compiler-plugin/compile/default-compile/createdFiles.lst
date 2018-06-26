@@ -1,5 +1,6 @@
+otp/SMS.class
+otp/Application.class
 otp/OTPDAO.class
 otp/OtpRowMapper.class
 otp/otp.class
-otp/Application.class
 otp/OTPController.class
