@@ -56,8 +56,16 @@ public class OTPDAO {
 
     public List<otp> getAllPhone()
     {
-        String query = "SELECT phone FROM otp";
+        String query = "SELECT * FROM otp";
         RowMapper<otp> mapper = new OtpRowMapper();
         return jdbcTemplate.query(query, mapper);
+    }
+
+    public otp getOtpByPhone(String phone)
+    {
+        String query = "SELECT * FROM otp where phone = ?";
+        RowMapper<otp> mapper = new OtpRowMapper();
+        otp otp = jdbcTemplate.queryForObject(query, mapper, phone);
+        return otp;
     }
 }

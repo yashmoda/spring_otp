@@ -12,6 +12,7 @@ public class OtpRowMapper implements RowMapper<otp> {
     {
         otp obj = new otp();
         obj.setPhone(row.getString("phone"));
+        obj.setOtp(row.getInt("otp"));
         return obj;
     }
 }

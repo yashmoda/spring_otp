@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class OTPController {
         else
         {
             System.out.println("Incorrect otp.");
-            return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<Void>(HttpStatus.OK);
         }
     }
 
@@ -44,6 +45,13 @@ public class OTPController {
     {
         List<otp> otp = otpdao.getAllPhone();
         return new ResponseEntity<List<otp>>(otp, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/get_otp")
+    public ResponseEntity<otp> getOtpByPhone(@RequestParam String phone)
+    {
+        otp otp = otpdao.getOtpByPhone(phone);
+        return new ResponseEntity<otp>(otp, HttpStatus.OK);
     }
 }
 
